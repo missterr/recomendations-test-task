@@ -1,9 +1,10 @@
 version: '3.7'
 
 services:
-  postgres:
+  db:
     image: library/postgres:11.7-alpine
     restart: always
+    container_name: db
     environment:
       POSTGRES_PASSWORD: recommendations
       POSTGRES_USER: recommendations
@@ -16,7 +17,7 @@ services:
       - recommendations-network
   django:
     build: .
-    container_name: dj01
+    container_name: django
     command: >
         bash -c "python manage.py makemigrations
         && python manage.py migrate
@@ -24,11 +25,13 @@ services:
         && python manage.py load_init_data
         && python manage.py runserver 0.0.0.0:8010"
     volumes:
-      - ./recommendations:/recommendations
+      - .:/recommendations
     ports:
-      - "8010:8010"
+      - 8010:8010
     depends_on:
-      - postgres
+      - db
+    networks:
+      - recommendations-network
 networks:
   recommendations-network:
 

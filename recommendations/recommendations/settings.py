@@ -43,7 +43,6 @@ INSTALLED_APPS = [
 
     'movies',
     'users',
-    'fixture_magic'
 ]
 
 MIDDLEWARE = [
@@ -86,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'ATOMIC_REQUESTS': True,
         'CONN_MAX_AGE': 0,
-        'HOST': 'localhost',
+        'HOST': 'db',
         'NAME': 'recommendations',
         'PASSWORD': 'recommendations',
         'USER': 'recommendations',

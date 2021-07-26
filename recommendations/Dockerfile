@@ -12,4 +12,5 @@ WORKDIR /recommendations
 ADD requirements.txt /recommendations/
 RUN pip install -r /recommendations/requirements.txt
 
-ADD /recommendations/ /recommendations/
+ADD manage.py /recommendations/
+
